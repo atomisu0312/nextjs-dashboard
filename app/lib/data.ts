@@ -64,7 +64,7 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
-    const data = await Promise.all([
+    const data = await Promise.all([ // これのおかげで、sqlを同時にスタートできる(順番に実行されることは無い)
       invoiceCountPromise,
       customerCountPromise,
       invoiceStatusPromise,
